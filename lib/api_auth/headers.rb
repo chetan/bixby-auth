@@ -24,7 +24,7 @@ module ApiAuth
           return ActionControllerRequest.new(request)
         end
 
-      elsif Module.const_defined?(:Rack) && request.kind_of?(Rack::Request) then
+      elsif Module.const_defined?(:Rack) && Rack.const_defined?(:Request) && request.kind_of?(Rack::Request) then
         # this goes last because TestRequest is also a subclass of Rack::Request
         return RackRequest.new(request)
       end
