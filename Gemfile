@@ -1,13 +1,13 @@
 source "https://rubygems.org"
 
 group :development do
-  gem "rake"
-  gem "pry"
+  gem "rake", "~> 10.3"
+  gem "pry", "~> 0.10"
   gem "yard", "~> 0.7"
   gem "bundler", "~> 1.0"
   gem "jeweler", "~> 2.0.1"
 
-  gem "bixby-common"
+  gem "bixby-common", "~> 0.4"
 
 
   gem "micron",     :github => "chetan/micron"

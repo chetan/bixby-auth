@@ -220,16 +220,16 @@ PLATFORMS
 DEPENDENCIES
   activeresource
   amatch
-  bixby-common
+  bixby-common (~> 0.4)
   bundler (~> 1.0)
   curb (~> 0.8.1)
   httpi
   jeweler (~> 2.0.1)
   micron!
   oj
-  pry
+  pry (~> 0.10)
   rails
-  rake
+  rake (~> 10.3)
   rb-fchange
   rb-fsevent
   rb-inotify
