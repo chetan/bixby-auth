@@ -1,4 +1,18 @@
 GIT
+  remote: git://github.com/chetan/jeweler.git
+  revision: b90381a3958daae7f3ce3d8c4d710fe39e72443b
+  branch: bixby
+  specs:
+    jeweler (2.0.1)
+      builder
+      bundler (>= 1.0)
+      git (>= 1.2.5)
+      github_api
+      highline (>= 1.6.15)
+      nokogiri (>= 1.5.10)
+      rake
+
+GIT
   remote: git://github.com/chetan/micron.git
   revision: 0c1e9c0b9d9e052805f43485fe3454cbd25913c5
   specs:
@@ -107,14 +121,6 @@ GEM
     httpi (2.2.7)
       rack
     i18n (0.6.11)
-    jeweler (2.0.1)
-      builder
-      bundler (>= 1.0)
-      git (>= 1.2.5)
-      github_api
-      highline (>= 1.6.15)
-      nokogiri (>= 1.5.10)
-      rake
     json (1.8.1)
     jwt (1.0.0)
     listen (2.8.0)
@@ -224,7 +230,7 @@ DEPENDENCIES
   bundler (~> 1.0)
   curb (~> 0.8.1)
   httpi
-  jeweler (~> 2.0.1)
+  jeweler (~> 2.0.1)!
   micron!
   oj
   pry (~> 0.10)
