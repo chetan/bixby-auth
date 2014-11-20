@@ -300,4 +300,57 @@ describe "ApiAuth::Headers" do
      end
    end
 
+  describe "with Bixby::SignedJsonRequest" do
+
+    before(:each) do
+      @json_req = Bixby::JsonRequest.new("foo", "bar")
+      @request = Bixby::SignedJsonRequest.new(@json_req)
+      @request.headers.merge!({
+        'Content-Type' => 'text/plain',
+        'Content-MD5'  => 'e59ff97941044f85df5297e1c302d260',
+        'Date'         => "Mon, 23 Jan 1984 03:29:56 GMT"
+      })
+      @headers = ApiAuth::Headers.new(@request)
+    end
+
+    it "should generate the proper canonical string" do
+      @headers.canonical_string.should == CANONICAL_STRING.gsub("/resource.xml?foo=bar&bar=foo", "/api")
+    end
+
+    it "should set the authorization header" do
+      @headers.sign_header("alpha")
+      @headers.authorization_header.should == "alpha"
+    end
+
+    it "should set the DATE header if one is not already present" do
+      @request = Bixby::SignedJsonRequest.new(@json_req)
+      @request.headers.merge!({
+        'Content-Type' => 'text/plain',
+        'Content-MD5' => 'e59ff97941044f85df5297e1c302d260'
+      })
+      ApiAuth.sign!(@request, "some access id", "some secret key")
+      @request.headers['Date'].should_not be_nil
+    end
+
+    it "should not set the DATE header just by asking for the canonical_string" do
+      request = Bixby::SignedJsonRequest.new(@json_req)
+      @request.headers.merge!({
+        'Content-Type' => 'text/plain',
+        'Content-MD5' => 'e59ff97941044f85df5297e1c302d260'
+      })
+      headers = ApiAuth::Headers.new(request)
+      headers.canonical_string
+      request.headers['date'].should be_nil
+    end
+
+    context "md5_mismatch?" do
+      it "is false if no md5 header is present" do
+        request = Bixby::SignedJsonRequest.new(@json_req)
+        request.headers.merge!({'Content-Type' => 'text/plain'})
+        headers = ApiAuth::Headers.new(request)
+        headers.md5_mismatch?.should be_false
+      end
+    end
+  end
+
 end

@@ -15,10 +15,13 @@ require 'action_controller/test_case'
 require 'active_resource'
 require 'active_resource/http_mock'
 
+require 'bixby-auth'
+require 'bixby-common'
+
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  
+
 end

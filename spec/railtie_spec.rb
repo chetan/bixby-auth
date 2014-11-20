@@ -12,7 +12,12 @@ describe "Rails integration" do
 
       def require_api_auth
         if (access_id = get_api_access_id_from_request)
-          return true if api_authenticated?(API_KEY_STORE[access_id])
+          begin
+            if api_authenticated?(API_KEY_STORE[access_id]) then
+              return true
+            end
+          rescue ApiAuth::RequestTooOld
+          end
         end
 
         respond_to do |format|

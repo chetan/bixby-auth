@@ -26,6 +26,14 @@ module ApiAuth
       capitalized_hash
     end
 
+    def time_as_httpdate
+      Helpers.time_as_httpdate
+    end
+
+    def self.time_as_httpdate
+      Time.now.utc.strftime("%a, %d %b %Y %T GMT")
+    end
+
   end
 
 end

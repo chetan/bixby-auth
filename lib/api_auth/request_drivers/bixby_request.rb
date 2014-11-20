@@ -59,5 +59,7 @@ module ApiAuth
 
     end
 
+    drivers["Bixby::SignedJsonRequest"] = BixbyRequest
+
   end
 end
