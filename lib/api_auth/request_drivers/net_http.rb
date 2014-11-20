@@ -62,7 +62,7 @@ module ApiAuth
       end
 
       def set_date
-        @request["DATE"] = Time.now.utc.httpdate
+        @request["DATE"] = time_as_httpdate
       end
 
       def timestamp

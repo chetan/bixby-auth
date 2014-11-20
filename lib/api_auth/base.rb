@@ -62,7 +62,7 @@ module ApiAuth
       headers = Headers.new(request)
       # 900 seconds is 15 minutes
       begin
-        if Time.httpdate(headers.timestamp).utc < (Time.now.utc - 900) then
+        if Time.parse(headers.timestamp).utc < (Time.now.utc - 900) then
           raise RequestTooOld, "request is more than 900 seconds old"
         end
         return false

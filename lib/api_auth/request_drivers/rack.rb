@@ -61,7 +61,7 @@ module ApiAuth
       end
 
       def set_date
-        @request.env.merge!({ "DATE" => Time.now.utc.httpdate })
+        @request.env.merge!({ "DATE" => time_as_httpdate })
       end
 
       def timestamp
