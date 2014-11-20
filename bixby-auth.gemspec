@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bixby-auth.gemspec",
     "lib/api-auth.rb",
     "lib/api_auth.rb",
     "lib/api_auth/base.rb",
@@ -63,12 +64,12 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rake>, [">= 0"])
-      s.add_development_dependency(%q<pry>, [">= 0"])
+      s.add_development_dependency(%q<rake>, ["~> 10.3"])
+      s.add_development_dependency(%q<pry>, ["~> 0.10"])
       s.add_development_dependency(%q<yard>, ["~> 0.7"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
-      s.add_development_dependency(%q<bixby-common>, [">= 0"])
+      s.add_development_dependency(%q<bixby-common>, ["~> 0.4"])
       s.add_development_dependency(%q<micron>, [">= 0"])
       s.add_development_dependency(%q<test_guard>, [">= 0"])
       s.add_development_dependency(%q<rb-inotify>, [">= 0"])
@@ -83,12 +84,12 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<curb>, ["~> 0.8.1"])
       s.add_development_dependency(%q<httpi>, [">= 0"])
     else
-      s.add_dependency(%q<rake>, [">= 0"])
-      s.add_dependency(%q<pry>, [">= 0"])
+      s.add_dependency(%q<rake>, ["~> 10.3"])
+      s.add_dependency(%q<pry>, ["~> 0.10"])
       s.add_dependency(%q<yard>, ["~> 0.7"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
       s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
-      s.add_dependency(%q<bixby-common>, [">= 0"])
+      s.add_dependency(%q<bixby-common>, ["~> 0.4"])
       s.add_dependency(%q<micron>, [">= 0"])
       s.add_dependency(%q<test_guard>, [">= 0"])
       s.add_dependency(%q<rb-inotify>, [">= 0"])
@@ -104,12 +105,12 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<httpi>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rake>, [">= 0"])
-    s.add_dependency(%q<pry>, [">= 0"])
+    s.add_dependency(%q<rake>, ["~> 10.3"])
+    s.add_dependency(%q<pry>, ["~> 0.10"])
     s.add_dependency(%q<yard>, ["~> 0.7"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
     s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
-    s.add_dependency(%q<bixby-common>, [">= 0"])
+    s.add_dependency(%q<bixby-common>, ["~> 0.4"])
     s.add_dependency(%q<micron>, [">= 0"])
     s.add_dependency(%q<test_guard>, [">= 0"])
     s.add_dependency(%q<rb-inotify>, [">= 0"])
