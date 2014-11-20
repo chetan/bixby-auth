@@ -91,6 +91,8 @@ module ApiAuth
 
     end
 
+    drivers["RestClient::Request"] = RestClientRequest
+
   end
 
 end

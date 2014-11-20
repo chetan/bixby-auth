@@ -75,6 +75,8 @@ module ApiAuth
 
     end
 
+    drivers["HTTPI::Request"] = HttpiRequest
+
   end
 
 end

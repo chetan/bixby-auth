@@ -10,6 +10,8 @@ module ApiAuth
 
     end
 
+    drivers["ActionDispatch::Request"] = ActionDispatchRequest
+
   end
 
 end

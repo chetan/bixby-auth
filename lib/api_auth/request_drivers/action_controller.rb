@@ -76,6 +76,9 @@ module ApiAuth
 
     end
 
+    drivers["ActionController::Request"]    = ActionControllerRequest
+    drivers["ActionController::CgiRequest"] = ActionControllerRequest
+
   end
 
 end

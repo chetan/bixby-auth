@@ -12,35 +12,24 @@ module ApiAuth
     end
 
     def initialize_request_driver(request)
-      new_request =
-        case request.class.to_s
-        when /Net::HTTP/
-          NetHttpRequest.new(request)
-        when /RestClient/
-          RestClientRequest.new(request)
-        when /Curl::Easy/
-          CurbRequest.new(request)
-        when /ActionController::Request/
-          ActionControllerRequest.new(request)
-        when /ActionController::TestRequest/
-          if defined?(ActionDispatch)
-            ActionDispatchRequest.new(request)
-          else
-            ActionControllerRequest.new(request)
-          end
-        when /ActionDispatch::Request/
-          ActionDispatchRequest.new(request)
-        when /ActionController::CgiRequest/
-          ActionControllerRequest.new(request)
-        when /HTTPI::Request/
-          HttpiRequest.new(request)
+      clazz = request.class.to_s
+      if RequestDrivers.drivers.include?(clazz) then
+        return RequestDrivers.drivers[clazz].new(request)
+
+      elsif clazz == "ActionController::TestRequest" then
+        # special handling for rails 3 vs 4
+        if defined?(ActionDispatch) then
+          return ActionDispatchRequest.new(request)
         else
-          nil
+          return ActionControllerRequest.new(request)
         end
 
-      return new_request if new_request
-      return RackRequest.new(request) if request.kind_of?(Rack::Request)
-      raise UnknownHTTPRequest, "#{request.class.to_s} is not yet supported."
+      elsif Module.const_defined?(:Rack) && request.kind_of?(Rack::Request) then
+        # this goes last because TestRequest is also a subclass of Rack::Request
+        return RackRequest.new(request)
+      end
+
+      raise UnknownHTTPRequest, "#{clazz} is not yet supported."
     end
     private :initialize_request_driver
 

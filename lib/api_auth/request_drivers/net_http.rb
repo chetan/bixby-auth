@@ -82,6 +82,17 @@ module ApiAuth
 
     end
 
+    drivers["Net::HTTP"]                  = NetHttpRequest
+    drivers["Net::HTTP::Put::Multipart"]  = NetHttpRequest
+    drivers["Net::HTTP::Post::Multipart"] = NetHttpRequest
+
+    Net::HTTP.constants.each do |c|
+      c = Net::HTTP.const_get(c)
+      if c.kind_of?(Class) && c.ancestors.include?(Net::HTTPRequest) then
+        drivers[c.to_s] = NetHttpRequest
+      end
+    end
+
   end
 
 end

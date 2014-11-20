@@ -65,6 +65,8 @@ module ApiAuth
 
     end
 
+    drivers["Curl::Easy"] = CurbRequest
+
   end
 
 end

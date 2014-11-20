@@ -81,6 +81,8 @@ module ApiAuth
 
     end
 
+    drivers["Rack::Request"] = RackRequest
+
   end
 
 end
