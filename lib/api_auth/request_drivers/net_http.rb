@@ -86,11 +86,19 @@ module ApiAuth
     drivers["Net::HTTP::Put::Multipart"]  = NetHttpRequest
     drivers["Net::HTTP::Post::Multipart"] = NetHttpRequest
 
-    Net::HTTP.constants.each do |c|
-      c = Net::HTTP.const_get(c)
-      if c.kind_of?(Class) && c.ancestors.include?(Net::HTTPRequest) then
-        drivers[c.to_s] = NetHttpRequest
-      end
+    # the following is used to generate the list of request classes below
+    #
+    # Net::HTTP.constants.each do |cc|
+    #   cc = Net::HTTP.const_get(cc)
+    #   if cc.kind_of?(Class) && cc.ancestors.include?(Net::HTTPRequest) then
+    #     puts cc.to_s
+    #   end
+    # end
+
+    %w{Get Head Post Put Delete Options Trace Patch
+       Propfind Proppatch Mkcol Copy Move Lock Unlock}.each do |m|
+
+      drivers["Net::HTTP::#{m}"] = NetHttpRequest
     end
 
   end
